@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="styles/panel.css" />
+</head>
+<body>
+  <div class="panel">
+    <header class="panel-header">
+      <h1>Premiere Grade</h1>
+      <button id="addRegionBtn" class="btn btn-primary">+ Add Region</button>
+    </header>
+
+    <section id="regionList" class="region-list">
+      <!-- populated by ui/regionList.js -->
+      <p class="empty-hint">Select a clip, then "Add Region" to start grading a part of the frame.</p>
+    </section>
+
+    <section id="editor" class="editor hidden">
+      <div class="editor-row">
+        <div class="wheel-block">
+          <canvas id="colorWheel" width="200" height="200"></canvas>
+          <label class="wheel-label">Primaries — <span id="wheelRangeLabel">Midtones</span></label>
+          <div class="range-tabs" id="rangeTabs">
+            <button data-range="shadows">Shadows</button>
+            <button data-range="midtones" class="active">Midtones</button>
+            <button data-range="highlights">Highlights</button>
+          </div>
+        </div>
+
+        <div class="slider-block">
+          <input type="range" id="exposureSlider" min="-100" max="100" value="0" orient="vertical" />
+          <div class="slider-readout"><span id="exposureValue">0.0</span></div>
+          <label class="slider-label">Exposure</label>
+        </div>
+      </div>
+
+      <div class="vectorscope-block">
+        <canvas id="vectorscope" width="360" height="120"></canvas>
+        <div class="vectorscope-readout" id="vectorscopeReadout">HSL VECTORS — HUE: — %  — %</div>
+      </div>
+
+      <div class="qualifier-block">
+        <h2>HSL Qualifier</h2>
+        <button id="eyedropperBtn" class="btn">Pick Color</button>
+        <div class="qualifier-sliders">
+          <label>Hue <input type="range" id="qHue" min="0" max="360" value="0" /></label>
+          <label>Sat <input type="range" id="qSat" min="0" max="100" value="50" /></label>
+          <label>Lum <input type="range" id="qLum" min="0" max="100" value="50" /></label>
+          <label>Softness <input type="range" id="qSoftness" min="0" max="100" value="20" /></label>
+        </div>
+      </div>
+
+      <div class="mask-block">
+        <h2>Mask Shape</h2>
+        <div class="mask-shape-buttons" id="maskShapeButtons">
+          <button data-shape="ellipse" class="active">Ellipse</button>
+          <button data-shape="fourPoint">4-Point</button>
+          <button data-shape="freeform">Freeform</button>
+        </div>
+        <label class="checkbox">
+          <input type="checkbox" id="maskInvert" /> Invert mask
+        </label>
+        <label class="slider-inline">
+          Feather <input type="range" id="maskFeather" min="0" max="100" value="20" />
+        </label>
+      </div>
+    </section>
+
+    <footer class="panel-footer">
+      <span id="statusLine">No clip selected.</span>
+    </footer>
+  </div>
+
+  <script src="main.js" type="module"></script>
+</body>
+</html>

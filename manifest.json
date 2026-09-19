@@ -1,0 +1,53 @@
+{
+  "id": "com.brucey1777.premieregrade",
+  "name": "Premiere Grade",
+  "version": "0.1.0",
+  "main": "src/index.html",
+  "host": [
+    {
+      "app": "PPRO",
+      "minVersion": "24.0"
+    }
+  ],
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "premiereGradePanel",
+      "label": {
+        "default": "Premiere Grade"
+      },
+      "minimumSize": { "width": 320, "height": 480 },
+      "maximumSize": { "width": 1024, "height": 2048 },
+      "preferredDockedSize": { "width": 380, "height": 700 },
+      "preferredFloatingSize": { "width": 380, "height": 700 },
+      "icons": [
+        {
+          "width": 23,
+          "height": 23,
+          "path": "icons/plugin-icon.png",
+          "scale": [1, 2],
+          "theme": ["darkest", "dark", "medium", "lightest", "light", "all"]
+        }
+      ]
+    }
+  ],
+  "requiredPermissions": {
+    "network": {
+      "domains": "none"
+    },
+    "clipboard": "readAndWrite",
+    "launchProcess": {
+      "schemes": "none"
+    }
+  },
+  "icons": [
+    {
+      "width": 23,
+      "height": 23,
+      "path": "icons/plugin-icon.png",
+      "scale": [1, 2],
+      "theme": ["darkest", "dark", "medium", "lightest", "light", "all"]
+    }
+  ],
+  "manifestVersion": 5
+}

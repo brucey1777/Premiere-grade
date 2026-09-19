@@ -1,0 +1,9 @@
+{
+  "name": "premiere-grade",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Region-based color grading panel for Adobe Premiere Pro (UXP)",
+  "scripts": {
+    "lint": "echo \"no linter configured yet\""
+  }
+}
