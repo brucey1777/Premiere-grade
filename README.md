@@ -48,20 +48,20 @@ later.
 premiere-grade/
   manifest.json          UXP plugin manifest (host: Premiere Pro)
   package.json
-  src/
-    index.html            Panel markup
-    main.js                Panel bootstrap, wires UI <-> Premiere API
-    ppro/
-      session.js           Wraps the premierepro UXP API: selection, effects, masks
-      lumetri.js            Find/create Lumetri instance, param lookup helpers
-      regions.js             Region model: create/select/delete masked Lumetri instances
-    ui/
-      colorWheel.js          Canvas-based draggable color wheel widget
-      exposureSlider.js       Vertical exposure slider widget
-      vectorscope.js           Lightweight HSL vectorscope readout
-      regionList.js             Region list / add-region UI
-    styles/
-      panel.css
+  index.html              Panel markup (must live at plugin root — UXP
+                            resolves <link>/<script> paths against the
+                            manifest's folder, not the HTML file's own folder)
+  main.js                 Panel bootstrap, wires UI <-> Premiere API
+  ppro/
+    session.js             Wraps the premierepro UXP API: selection, effects, masks
+    lumetri.js              Find/create Lumetri instance, param lookup helpers
+    regions.js               Region model: create/select/delete masked Lumetri instances
+  ui/
+    colorWheel.js            Canvas-based draggable color wheel widget
+    vectorscope.js            Lightweight HSL vectorscope readout
+    regionList.js              Region list / add-region UI
+  styles/
+    panel.css
   docs/
     native-plugin-path.md   Notes on the native Video Filter SDK route
   icons/
