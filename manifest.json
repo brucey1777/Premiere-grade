@@ -1,7 +1,7 @@
 {
   "id": "com.brucey1777.premieregrade",
   "name": "Premiere Grade",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "src/index.html",
   "host": {
     "app": "premierepro",
@@ -30,10 +30,7 @@
     }
   ],
   "requiredPermissions": {
-    "clipboard": "readAndWrite",
-    "network": {
-      "domains": "all"
-    }
+    "clipboard": "readAndWrite"
   },
   "icons": [
     {
