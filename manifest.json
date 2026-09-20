@@ -2,7 +2,7 @@
   "id": "com.brucey1777.premieregrade",
   "name": "Premiere Grade",
   "shortname": "premieregrade",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "index.html",
   "host": {
       "app": "premierepro",

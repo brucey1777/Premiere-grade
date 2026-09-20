@@ -225,27 +225,34 @@
     let dragging = false;
 
     function drawWheelGradient() {
-      const image = ctx.createImageData(size, size);
-      for (let y = 0; y < size; y++) {
-        for (let x = 0; x < size; x++) {
-          const dx = x - center;
-          const dy = y - center;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const idx = (y * size + x) * 4;
-          if (dist > radius) {
-            image.data[idx + 3] = 0;
-            continue;
-          }
-          const angle = (Math.atan2(dy, dx) * 180) / Math.PI + 180;
-          const sat = Math.min(dist / radius, 1);
-          const [r, g, b] = hsbToRgb(angle, sat, 1);
-          image.data[idx] = r;
-          image.data[idx + 1] = g;
-          image.data[idx + 2] = b;
-          image.data[idx + 3] = 255;
-        }
+      // UXP's Canvas2D implementation doesn't support createImageData/
+      // putImageData, so the wheel is built from standard, widely-supported
+      // primitives instead: one filled wedge per degree of hue (arc + fill),
+      // then a white->transparent radial gradient painted on top to fake
+      // the saturation falloff toward the center.
+      ctx.clearRect(0, 0, size, size);
+
+      const steps = 180;
+      for (let i = 0; i < steps; i++) {
+        const hue = (i / steps) * 360;
+        const startAngle = (i / steps) * Math.PI * 2;
+        const endAngle = ((i + 1.5) / steps) * Math.PI * 2; // slight overlap avoids seams
+        const [r, g, b] = hsbToRgb(hue, 1, 1);
+        ctx.beginPath();
+        ctx.moveTo(center, center);
+        ctx.arc(center, center, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+        ctx.fill();
       }
-      ctx.putImageData(image, 0, 0);
+
+      const gradient = ctx.createRadialGradient(center, center, 0, center, center, radius);
+      gradient.addColorStop(0, "rgba(255,255,255,1)");
+      gradient.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.beginPath();
+      ctx.arc(center, center, radius, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
     }
 
     function drawPuck() {
