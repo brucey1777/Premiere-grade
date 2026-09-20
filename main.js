@@ -61,8 +61,6 @@
   // ---------------------------------------------------------------------
   // ppro/lumetri.js — find/create a Lumetri Color component, read/write params.
   // ---------------------------------------------------------------------
-  const LUMETRI_MATCH_NAME = "Lumetri Color";
-
   async function findLumetriComponent(trackItem) {
     const chain = await getComponentChain(trackItem);
     const count = await chain.getComponentCount();
@@ -76,9 +74,25 @@
     return null;
   }
 
+  // Console-verified shape (Premiere Pro Beta v27.0.0):
+  //   VideoFilterFactory.getMatchNames() / getDisplayNames() are parallel
+  //   static arrays; createComponent(matchName) builds a Component instance;
+  //   chain.createAppendComponentAction(component) returns an action object
+  //   that must be added to the transaction's CompoundAction (there is no
+  //   direct "insertComponent" call on the chain).
   async function addLumetriComponent(trackItem, compoundAction) {
+    const { VideoFilterFactory } = ppro();
+    const matchNames = await VideoFilterFactory.getMatchNames();
+    const displayNames = await VideoFilterFactory.getDisplayNames();
+    const index = displayNames.findIndex((name) => name && name.includes("Lumetri"));
+    if (index === -1) {
+      throw new Error("Lumetri Color filter not found in VideoFilterFactory.");
+    }
+    const component = await VideoFilterFactory.createComponent(matchNames[index]);
     const chain = await getComponentChain(trackItem);
-    return chain.insertComponent(LUMETRI_MATCH_NAME, compoundAction);
+    const action = await chain.createAppendComponentAction(component);
+    compoundAction.addAction(action);
+    return component;
   }
 
   async function ensureLumetri(trackItem, compoundAction) {
