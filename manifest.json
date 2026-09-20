@@ -32,7 +32,7 @@
   "requiredPermissions": {
     "clipboard": "readAndWrite",
     "network": {
-      "domains": []
+      "domains": "all"
     }
   },
   "icons": [
