@@ -51,15 +51,15 @@ premiere-grade/
   index.html              Panel markup (must live at plugin root — UXP
                             resolves <link>/<script> paths against the
                             manifest's folder, not the HTML file's own folder)
-  main.js                 Panel bootstrap, wires UI <-> Premiere API
-  ppro/
-    session.js             Wraps the premierepro UXP API: selection, effects, masks
-    lumetri.js              Find/create Lumetri instance, param lookup helpers
-    regions.js               Region model: create/select/delete masked Lumetri instances
-  ui/
-    colorWheel.js            Canvas-based draggable color wheel widget
-    vectorscope.js            Lightweight HSL vectorscope readout
-    regionList.js              Region list / add-region UI
+  main.js                 Everything — session/Lumetri/region helpers and the
+                            UI widgets (color wheel, vectorscope, region list)
+                            — bundled into one plain <script> with no
+                            import/export. UXP's panel webview did not
+                            execute a <script type="module"> that imported
+                            sibling files (no console error; the script
+                            silently never ran), so this avoids the ES
+                            module loader entirely rather than working
+                            around it.
   styles/
     panel.css
   docs/
