@@ -1,23 +1,41 @@
 {
   "id": "com.brucey1777.premieregrade",
   "name": "Premiere Grade",
-  "version": "0.1.1",
+  "shortname": "premieregrade",
+  "version": "0.1.2",
   "main": "src/index.html",
   "host": {
-    "app": "premierepro",
-    "minVersion": "25.6.0"
+      "app": "premierepro",
+      "minVersion": "25.1.0"
+  },
+  "manifestVersion": 5,
+  "requiredPermissions": {
+    "localFileSystem": "request",
+    "clipboard": "readAndWrite"
   },
   "entrypoints": [
     {
-      "type": "panel",
       "id": "premiereGradePanel",
+      "type": "panel",
+      "minimumSize": {
+        "width": 320,
+        "height": 480
+      },
+      "maximumSize": {
+        "width": 1024,
+        "height": 2048
+      },
+      "preferredDockedSize": {
+        "width": 380,
+        "height": 700
+      },
+      "preferredFloatingSize": {
+        "width": 380,
+        "height": 700
+      },
       "label": {
         "default": "Premiere Grade"
       },
-      "minimumSize": { "width": 320, "height": 480 },
-      "maximumSize": { "width": 1024, "height": 2048 },
-      "preferredDockedSize": { "width": 380, "height": 700 },
-      "preferredFloatingSize": { "width": 380, "height": 700 },
       "icons": [
         {
           "width": 23,
@@ -29,17 +47,14 @@
       ]
     }
   ],
-  "requiredPermissions": {
-    "clipboard": "readAndWrite"
-  },
   "icons": [
     {
       "width": 23,
       "height": 23,
       "path": "icons/plugin-icon.png",
       "scale": [1, 2],
-      "theme": ["darkest", "dark", "medium", "lightest", "light", "all"]
+      "theme": ["darkest", "dark", "medium", "lightest", "light", "all"],
+      "species": ["pluginList"]
     }
-  ],
-  "manifestVersion": 5
+  ]
 }
