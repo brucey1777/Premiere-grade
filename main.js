@@ -24,8 +24,8 @@
   }
 
   async function getActiveSequence() {
-    const { app } = ppro();
-    const project = await app.Project.getActiveProject();
+    const { Project } = ppro();
+    const project = await Project.getActiveProject();
     if (!project) return null;
     return project.getActiveSequence();
   }
@@ -43,8 +43,8 @@
   }
 
   async function executeAsModal(callback, description) {
-    const { app } = ppro();
-    return app.Project.getActiveProject().then((project) =>
+    const { Project } = ppro();
+    return Project.getActiveProject().then((project) =>
       project.executeTransaction((compoundAction) => callback(compoundAction), description)
     );
   }
