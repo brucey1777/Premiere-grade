@@ -30,13 +30,7 @@
     }
   ],
   "requiredPermissions": {
-    "network": {
-      "domains": "none"
-    },
-    "clipboard": "readAndWrite",
-    "launchProcess": {
-      "schemes": "none"
-    }
+    "clipboard": "readAndWrite"
   },
   "icons": [
     {
