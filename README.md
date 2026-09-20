@@ -72,7 +72,9 @@ premiere-grade/
 
 1. Install the **UXP Developer Tool (UDT)** from the Creative Cloud desktop app.
 2. In UDT, "Add Plugin" → select this folder's `manifest.json`.
-3. Load it into a running Premiere Pro (2024 or later) via UDT's "Load" button.
+3. Load it into a running Premiere Pro (25.6 / 2026 or later — the first
+   release with standard UXP panel support; earlier versions only had it in
+   Beta) via UDT's "Load" button.
 4. Open the panel: **Window > Extensions (Legacy or UXP) > Premiere Grade**.
 5. Select a clip on the timeline, click **Add Region**, drag the mask handles
    in the program monitor, then grade with the wheel/slider/qualifier.
